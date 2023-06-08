@@ -17,7 +17,7 @@ function getBalances() {
     };
     $.ajax(settings).done(function (response) {
         var bitToken = response.data.items.find(x => x.contract_address === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        var bitBalance = Web3.utils.fromWei(bitToken.balance);
+        var bitBalance = bitToken.balance / Math.pow(10,18);
         $('#bitBalanceAccount').text(bitBalance);
         var list = document.querySelector('.balances-data');
         var table = document.createElement('table');
@@ -47,7 +47,6 @@ function getBalances() {
 
         table.className = 'table table-striped';
         table.appendChild(thead);
-        console.log(response.data.items);
         for (j = 0; j < response.data.items.length; j++) {
             var tbodyTr = document.createElement('tr');
             var contractTd = document.createElement('td');
@@ -104,13 +103,12 @@ async function getHistoricalBalances() {
             //console.log(response.data.items);
             if(response.data.items != null && response.data.items.length > 0) {
                 var firstItem = response.data.items.find(x => x.contract_address === "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000");
-                console.log(firstItem.holdings);
                 for (j = 0; j < firstItem.holdings.length; j++) {
                     labels_data.push(firstItem.holdings[j].timestamp.substring(0, 10));
-                    balance_close.push(Web3.utils.fromWei(firstItem.holdings[j].close.balance));
-                    balance_open.push(Web3.utils.fromWei(firstItem.holdings[j].open.balance));
-                    balance_high.push(Web3.utils.fromWei(firstItem.holdings[j].high.balance));
-                    balance_low.push(Web3.utils.fromWei(firstItem.holdings[j].low.balance));
+                    balance_close.push((firstItem.holdings[j].close.balance/ Math.pow(10,18)));
+                    balance_open.push((firstItem.holdings[j].open.balance/ Math.pow(10,18)));
+                    balance_high.push((firstItem.holdings[j].high.balance/ Math.pow(10,18)));
+                    balance_low.push((firstItem.holdings[j].low.balance/ Math.pow(10,18)));
                 }
                         var canvas = document.getElementById('bitPorfolioChart').getContext('2d');
                         var data = {
@@ -226,7 +224,6 @@ async function getTransfers() {
             thead.appendChild(theadTr);
             table.className = 'table table-striped';
             table.appendChild(thead);
-            console.log(response.data.items);
             for (j = 0; j < response.data.items.length; j++) {
                 var tbodyTr = document.createElement('tr');
                 var contractTd = document.createElement('td');
@@ -240,7 +237,7 @@ async function getTransfers() {
                 contractTickerTd.innerHTML = "<b>"+ (response.data.items[j].to_address != null ? response.data.items[j].to_address.substring(0, 10) + "..." : "-")+ "</b>";
                 tbodyTr.appendChild(contractTickerTd);
                 var balanceTd = document.createElement('td');
-                balanceTd.innerHTML = "<b>"+ Web3.utils.fromWei(response.data.items[j].value.toString())+ "</b>";
+                balanceTd.innerHTML = "<b>"+(response.data.items[j].value / Math.pow(10,18))+ "</b>";
                 tbodyTr.appendChild(balanceTd);
                 var balanceUSDTd = document.createElement('td');
                 balanceUSDTd.innerHTML = "<b>"+ (response.data.items[j].value_quote != null ? response.data.items[j].value_quote : "0")+ "</b>";
@@ -298,7 +295,6 @@ async function getTokenApprovals() {
             thead.appendChild(theadTr);
             table.className = 'table table-striped';
             table.appendChild(thead);
-            console.log(response.data.items);
             for (j = 0; j < response.data.items.length; j++) {
                 var tbodyTr = document.createElement('tr');
                 var contractTd = document.createElement('td');
