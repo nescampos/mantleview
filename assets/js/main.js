@@ -47,6 +47,7 @@ function getBalances() {
 
         table.className = 'table table-striped';
         table.appendChild(thead);
+        console.log(response.data.items);
         for (j = 0; j < response.data.items.length; j++) {
             var tbodyTr = document.createElement('tr');
             var contractTd = document.createElement('td');
@@ -103,7 +104,7 @@ async function getHistoricalBalances() {
             //console.log(response.data.items);
             if(response.data.items != null && response.data.items.length > 0) {
                 var firstItem = response.data.items.find(x => x.contract_address === "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000");
-
+                console.log(firstItem.holdings);
                 for (j = 0; j < firstItem.holdings.length; j++) {
                     labels_data.push(firstItem.holdings[j].timestamp.substring(0, 10));
                     balance_close.push(Web3.utils.fromWei(firstItem.holdings[j].close.balance));
@@ -225,7 +226,7 @@ async function getTransfers() {
             thead.appendChild(theadTr);
             table.className = 'table table-striped';
             table.appendChild(thead);
-
+            console.log(response.data.items);
             for (j = 0; j < response.data.items.length; j++) {
                 var tbodyTr = document.createElement('tr');
                 var contractTd = document.createElement('td');
@@ -297,7 +298,7 @@ async function getTokenApprovals() {
             thead.appendChild(theadTr);
             table.className = 'table table-striped';
             table.appendChild(thead);
-
+            console.log(response.data.items);
             for (j = 0; j < response.data.items.length; j++) {
                 var tbodyTr = document.createElement('tr');
                 var contractTd = document.createElement('td');
