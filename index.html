@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Start your development with Rubic landing page.">
+   <meta name="author" content="Devcrud">
+   <title>MantleView</title>
+   <!-- font icons -->
+   <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+   <!-- Bootstrap + Steller  -->
+   <link rel="stylesheet" href="assets/css/rubic.css">
+</head>
+<body>
+
+   <!-- Page Header -->
+   <header class="header header-mini"> 
+      
+      <img src="assets/imgs/MantleView.png" alt="MantleView" class="header-logo">
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb">
+            
+         </ol>
+      </nav>
+   </header> <!-- End Of Page Header -->
+
+   <!-- main content -->
+   <div class="container">
+
+
+      <!-- Inputs -->
+      <h3>Dashboard to analyze the behavior of a wallet in Mantle Network</h3>
+      <hr>
+      <div class="row mt-5">
+         <div class="col-md-6">
+            <h6 class="section-secondary-title">Enter the wallet:</h6>        
+            <div class="form-group">
+               <input type="text" class="form-control" id="walletAddress" placeholder="Wallet address: 0x...">
+            </div>
+         </div>
+         <div class="col-md-6">
+            <br />
+            <button type="button" id="checkWalletButton" class="btn btn-primary">Review wallet</button>
+         </div>
+      </div> <!-- end of inputs -->   
+
+      <!-- devider -->
+      <div class="py-5"></div>     
+      
+      <div class="row mt-5">
+         <div class="col-md-4">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary rounded shadow mb-3">
+               <div class="container">
+                  <a class="navbar-brand" href="#">Summary</a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+            </nav>    
+            <div class="form-group summary-data" style="display: none;">
+               BIT Balance: <b><span id="bitBalanceAccount">Loading</span></b> <br />
+               Age (in days): <b><span id="age"></span></b> <br />
+               Transaction count: <b><span id="transactionCount"></span></b> <br />
+               Earliest transaction: <span id="earliestTransaction"></span> <br />
+               Lastest transaction: <span id="lastestTransaction"></span> <br />
+               Tokens: <b><span id="tokenCount">Loading</span></b> <br />
+               Token Approvals: <b><span id="tokenApprovalsCount">Loading</span></b> <br />
+            </div>
+            <div class="form-group summary-data-loading" style="display: none;">
+               Loading...
+            </div>
+         </div>
+         <div class="col-md-8">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-secondary rounded shadow mb-3">
+               <div class="container">
+                  <a class="navbar-brand" href="#">BIT portfolio in the last 30 days</a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+            </nav>    
+            <div class="form-group bitportfolio-data" style="display: none;">
+               <div>
+                  <canvas id="bitPorfolioChart"></canvas>
+                </div>
+            </div>
+            <div class="form-group bitportfolio-data-loading" style="display: none;">
+               Loading...
+            </div>
+         </div>
+         
+      </div>
+
+      <div class="py-5"></div>  
+
+      <div class="row mt-5">
+
+         <div class="col-md-6">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-info rounded shadow mb-3">
+               <div class="container">
+                  <a class="navbar-brand" href="#">Balances</a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+            </nav>    
+            <div class="form-group balances-data" style="display: none;">
+               
+            </div>
+            <div class="form-group balances-data-loading" style="display: none;">
+               Loading...
+            </div>
+         </div>
+
+         <div class="col-md-6">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-warning rounded shadow mb-3">
+               <div class="container">
+                  <a class="navbar-brand" href="#">Token Approvals</a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+            </nav>    
+            <div class="form-group approval-data" style="display: none;">
+               
+            </div>
+            <div class="form-group approval-data-loading" style="display: none;">
+               Loading...
+            </div>
+         </div>
+      </div>
+
+      <div class="py-5"></div>  
+
+      <div class="row mt-5">
+
+         <div class="col-md-12">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-success rounded shadow mb-3">
+               <div class="container">
+                  <a class="navbar-brand" href="#">Last 100 Transactions</a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+            </nav>    
+            <div class="form-group transfers-data" style="display: none;">
+               
+            </div>
+            <div class="form-group transfers-data-loading" style="display: none;">
+               Loading...
+            </div>
+         </div>
+      </div>
+
+      
+   </div>
+   <!-- end of typography -->
+
+   <!-- Page Footer -->
+    <footer class="footer py-4 bg-light"> 
+        <div class="container text-center">
+            <p class="mb-4 small">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="http://www.devcrud.com">DevCRUD</a></p>
+        </div>
+    </footer>
+    <!-- End of page footer -->
+   
+   <!-- core  -->
+   <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+   <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- steller js -->
+    <script src="assets/js/rubic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
