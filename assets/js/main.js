@@ -243,7 +243,7 @@ async function getTransfers() {
                 balanceUSDTd.innerHTML = "<b>"+ (response.data.items[j].value_quote != null ? response.data.items[j].value_quote : "0")+ "</b>";
                 tbodyTr.appendChild(balanceUSDTd);
                 var contractIdTd = document.createElement('td');
-                contractIdTd.innerHTML = "<b>"+ (response.data.items[j].fees_paid != null ? Web3.utils.fromWei(response.data.items[j].fees_paid.toString()) : '-')+ "</b>";
+                contractIdTd.innerHTML = "<b>"+ (response.data.items[j].fees_paid != null ? (response.data.items[j].fees_paid / Math.pow(10,18) ) : '-')+ "</b>";
                 tbodyTr.appendChild(contractIdTd);
                 tbody.appendChild(tbodyTr);
             }
